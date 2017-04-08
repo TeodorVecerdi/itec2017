@@ -117,7 +117,7 @@ public class RegisterController implements Initializable {
             DatabaseManager.executePreparedUpdate(sql);
 
 
-        } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+        } catch ( NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
         }
     }

@@ -1,5 +1,6 @@
 package com.powersoft.itec2017.window.controller;
 
+import com.powersoft.itec2017.framework.DatabaseManager;
 import com.powersoft.itec2017.security.VerifierService;
 import com.powersoft.itec2017.skins.PasswordFieldMaskableSkin;
 import de.jensd.fx.glyphs.GlyphsDude;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -29,19 +32,31 @@ public class LoginController implements Initializable {
         String response = VerifierService.verifyLogin(usernameInput.getText(), passwordInput.getText());
         if (response.equals("ok")) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/MainWindow.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                MainController controller = new MainController(usernameInput.getText());
-                loader.setController(controller);
-                Parent listView = loader.load();
-                Scene scene = new Scene(listView);
-                scene.getStylesheets().addAll("styles/glyphs_blue.css");
-                stage.setTitle("Location Manager");
-                stage.setScene(scene);
-                stage.setFullScreen(true);
+                ResultSet resultSet = DatabaseManager.executeQuery("SELECT AccountType FROM accounts WHERE Username = '" + usernameInput.getText() + "'");
+                resultSet.next();
+                boolean admin = resultSet.getBoolean("AccountType");
+                if (admin){
+                    new AdminManagerController(usernameInput.getText()).display();
+                    ((Stage) usernameInput.getScene().getWindow()).close();
+                }
+                else {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/MainWindow.fxml"));
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        MainController controller = new MainController(usernameInput.getText());
+                        loader.setController(controller);
+                        Parent listView = loader.load();
+                        Scene scene = new Scene(listView);
+                        scene.getStylesheets().addAll("styles/glyphs_blue.css");
+                        stage.setTitle("Location Manager");
+                        stage.setScene(scene);
 
-                System.out.println("LOGIN SUCCESSFUL");
-            } catch (IOException e) {
+                        System.out.println("LOGIN SUCCESSFUL");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
@@ -56,7 +71,7 @@ public class LoginController implements Initializable {
             Parent register = FXMLLoader.load(getClass().getResource("../fxml/RegisterWindow.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(register);
-            scene.getStylesheets().addAll("com/teodor/vecerdi/movielist/css/style.css", "styles/glyphs_blue.css");
+            scene.getStylesheets().addAll("styles/glyphs_blue.css");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

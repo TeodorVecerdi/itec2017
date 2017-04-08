@@ -52,11 +52,6 @@ public class VerifierService {
             ok = false;
         }
 
-        /*if (!DatabaseService.registerVerification(username)) {
-            response = "\nUSERNAME '" + username + "' ALREADY EXISTS\n";
-            ok = false;
-        }*/
-
         if (ok) response = "ok";
         return response;
     }

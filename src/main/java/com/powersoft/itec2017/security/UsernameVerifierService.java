@@ -26,6 +26,10 @@ public class UsernameVerifierService {
             response += "Be at least eight characters long\n";
             ok = false;
         }
+        if (!DatabaseService.registerVerification(s)) {
+            response = "\nUSERNAME '" + s + "' ALREADY EXISTS\n";
+            ok = false;
+        }
         if (ok) response = "ok";
         return response;
     }

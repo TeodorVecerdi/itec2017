@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+            <MenuBar BorderPane.alignment="CENTER">
+                <menus>
+                    <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#funcExit" text="Exit" />
+                            <MenuItem mnemonicParsing="false" onAction="#funcLogOut" text="Log Out" />
+                            <MenuItem mnemonicParsing="false" onAction="#funcSettings" text="Settings ..." />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Data">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#funcImport" text="Import ..." />
+                            <MenuItem mnemonicParsing="false" onAction="#funcExport" text="Export ..." />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Reports">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#sendMail" text="Send Mail ..." />
+                            <MenuItem mnemonicParsing="false" onAction="#exportReport" text="Export ..." />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                      minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" spacing="10.0">
+                    <children>
+                        <Label text="Start Date"/>
+                        <TextField fx:id="startDateFilter">
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </TextField>
+                        <Label text="End Date"/>
+                        <TextField fx:id="endDateFilter"/>
+                        <Button mnemonicParsing="false" onAction="#updateMap" text="Update Map"/>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="10.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#createEntry" text="Create Entry (Single)"/>
+                        <Button mnemonicParsing="false" onAction="#editEntry" text="Edit Entry (Single)"/>
+                        <Button mnemonicParsing="false" onAction="#deleteSelected" text="Delete Selected (Multiple)"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane prefHeight="200.0" prefWidth="200.0" vvalue="1.0" BorderPane.alignment="CENTER">
+            <content>
+                <VBox prefHeight="550.0" prefWidth="585.0">
+                    <children>
+                        <WebView fx:id="webView" prefHeight="350.0" prefWidth="598.0"/>
+                        <TableView fx:id="tableView" prefHeight="269.0" prefWidth="585.0">
+                            <columns>
+                                <TableColumn fx:id="locationColumn" prefWidth="150.0" resizable="false"
+                                             text="Location"/>
+                                <TableColumn fx:id="startDateColumn" prefWidth="150.0" resizable="false"
+                                             text="Start Date"/>
+                                <TableColumn fx:id="endDateColumn" prefWidth="150.0" resizable="false" text="End Date"/>
+                                <TableColumn fx:id="priceColumn" minWidth="5.0" prefWidth="140.0" resizable="false"
+                                             text="Price"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
