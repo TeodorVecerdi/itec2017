@@ -107,14 +107,6 @@ public class RegisterController implements Initializable {
             byte[] password = PES.getEncryptedPassword(passwordInput.getText(), salt);
             DatabaseManager.executePreparedUpdate(QueryManager.ADD_NEW_ACCOUNT, usernameInput.getText(), salt, password, firstNameInput.getText(), lastNameInput.getText(), emailInput.getText(), homeCityInput.getSelectionModel().getSelectedItem(), sdf.format(date));
 
-            /*//REMINDER: Creating table for lists
-            String usernameListTable = "CREATE TABLE " + usernameInput.getText() + " ( ListID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ListName VARCHAR (200) NOT NULL);";
-            PreparedStatement listQueryStatement = Main.getConnection().prepareStatement(usernameListTable);
-            listQueryStatement.executeUpdate();
-
-            //REMINDER: Creating table for movies
-            String tableName = usernameInput.getText().concat("_movielist");
-            */
             String sql = "CREATE TABLE " + usernameInput.getText() + " (\n" +
                     "  `id` INT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                     "  `LocationName` VARCHAR(200) COLLATE utf8mb4_unicode_ci NOT NULL,\n" +
