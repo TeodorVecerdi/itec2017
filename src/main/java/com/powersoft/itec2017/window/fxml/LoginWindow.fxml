@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="285.0" prefWidth="308.0"
+            xmlns="http://javafx.com/javafx/8.0.111"
+            fx:controller="com.powersoft.itec2017.window.controller.LoginController">
+    <center>
+        <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="40.0" prefWidth="45.0" spacing="5.0">
+                    <children>
+                        <Label text="Username"/>
+                        <TextField fx:id="usernameInput" maxWidth="-Infinity" prefWidth="250.0" promptText="Username"/>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="40.0" prefWidth="45.0">
+                    <children>
+                        <Label text="Password"/>
+                        <PasswordField fx:id="passwordInput" maxWidth="-Infinity" prefWidth="250.0"
+                                       promptText="Password"/>
+                    </children>
+                </VBox>
+                <ToggleButton fx:id="showPassword" mnemonicParsing="false" text="Show Password"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#login" text="Login" defaultButton="true">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#register" text="Register">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

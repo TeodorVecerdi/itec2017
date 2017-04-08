@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnector {
     public static Connection getConnection() throws SQLException {
+        System.out.println("Connected");
         return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/powersoft", "user", "user");
     }
 }

@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class WindowManager extends Application{
+public class Window extends Application{
 
     private Stage window;
     private Scene scene;
@@ -14,10 +15,10 @@ public class WindowManager extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("fxml/LoginWindow.fxml"));
-        Parent root = loader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/LoginWindow.fxml"));
         window.setTitle("Log In");
+//        window.setFullScreen(true);
+
 
         scene = new Scene(root);
         scene.getStylesheets().addAll("styles/glyphs_blue.css");
